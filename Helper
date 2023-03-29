@@ -1,0 +1,37 @@
+package day4;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
+
+@Component
+@Aspect
+@EnableAspectJAutoProxy
+public class Helper {
+    private final static Logger logger = LogManager.getLogger(main.class);
+
+    @After("execution(public * add(..))")
+    public void addition()
+    {
+       System.out.println("add Called");
+    }
+
+    @Before("execution(public * subtract(..))")
+    public void subtract(){
+        System.out.println("subtract called");
+    }
+
+    @AfterReturning(pointcut="execution(public * multiply(..))",returning="obj")
+    public void multiply(JoinPoint joinPoint,Object obj){
+       logger.info("multiply called");
+    }
+
+
+    @AfterThrowing(pointcut="execution(public double divide(..))",throwing="exception")
+    public void divide(ArithmeticException exception){
+        System.out.println("after divide called");
+    }
+}
