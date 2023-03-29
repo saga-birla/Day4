@@ -1,0 +1,59 @@
+package day4;
+
+import appConfiguration.AppConfiguration;
+import com.sun.tools.javac.Main;
+import dao.CustomerDaoImplement;
+import day1.Customer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import services.ServiceDaoImplement;
+
+public class main {
+    private final static Logger logger = LogManager.getLogger(main.class);
+
+    public static void main(String[] args) {
+        ApplicationContext configurableApplicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
+       // Cal cal = (Cal) configurableApplicationContext.getBean("cal");
+       CustomerDaoImplement customerDaoImplement=(CustomerDaoImplement) configurableApplicationContext.getBean("customerDaoImplement");
+       // ServiceDaoImplement serviceDaoImplement=(ServiceDaoImplement) configurableApplicationContext.getBean("serviceDaoImplement");
+        Customer customer=(Customer) configurableApplicationContext.getBean("customer");
+
+      //logger.info(cal.add(3,8));
+//       logger.info(cal.add(3,7));
+       //logger.info(cal.subtract(7,5));
+//        logger.info(cal.multiply(3,4));
+//        double divide = cal.divide(10, 0);
+//        logger.info(divide);
+//        try{
+//            cal.divide(10.0,0.0);
+//            System.out.println("error not found");
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println( e.getMessage() );
+//            logger.info("division is not possible");
+//        }
+
+
+            //Question...Springday4..........2.b)
+        //logger.info(customerDaoImplement.getCustomer(101));
+
+            //Question.........Springday4........2.c)
+       // logger.info(customerDaoImplement.updateCustomer(customer));
+//            ServiceDaoImplement serviceDaoImplement1=new ServiceDaoImplement();
+//            serviceDaoImplement1.registerCustomer(customer);
+        //Question...Springday4....2.d)
+//        try{
+//            int id = 109223;
+//            logger.info("Customer with id " + id );
+//            logger.info(serviceDaoImplement.getCustomer(id));
+//        }catch (Exception ex)
+//        {
+//            logger.info("doesnot exists ");
+//       }
+       // logger.info(customerDaoImplement.getCustomer(180));
+    }
+}
