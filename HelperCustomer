@@ -1,0 +1,52 @@
+package day4;
+
+import springassignment.Customer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
+import services.CustomerNotFoundException;
+
+import java.util.List;
+
+@Component
+@Aspect
+@EnableAspectJAutoProxy(proxyTargetClass = true)
+@ComponentScan("dao")
+public class HelperCustomer {
+    private final static Logger logger = LogManager.getLogger(main.class);
+
+
+    // @Before("execution(public * getCustomer(..))")
+    public void returnAllCustomers() {
+        System.out.println("All customer has been added");
+    }
+    @After("execution(public * updateCustomer(..))")
+    public void updateAllCustomer()
+    {
+//logger.info("All customer has been added");
+        System.out.println("Has been Updated...");
+    }
+
+    @AfterThrowing(pointcut="execution(public * getCustomer(..))",throwing="exception")
+// @AfterReturning(pointcut="execution(public * getCustomer(..))",returning="obj")
+    public void searchCustomer(Throwable exception)
+// public void searchCustomer(JoinPoint joinPoint, Object obj)
+    {
+// System.out.println("Need to found the Customer");
+    }
+
+// @Before("execution(public * getCustomersByName(..)")
+// public void searchCustomer()
+// {
+// System.out.println("search by name");
+// }
+//
+// @After("execution(public * getCustomerByName(..)")
+// public void searchCustomer1() {
+// System.out.println("search by name");
+// }
+}
